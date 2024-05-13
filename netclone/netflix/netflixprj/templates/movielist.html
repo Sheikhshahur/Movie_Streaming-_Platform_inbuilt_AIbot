@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class='bg-primary_black min-h-screen w-full'>
+        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex justify-end items-end bg-cover" style="background-image: url('{% static 'assets/viking.jpg' %}');">
+            <div>
+                <h2 class="text-6xl font-semibold text-white my-4">
+                    Vikings
+                </h2>
+                <p class=" w-11/12 md:w-5/12 font-medium text-white my-4">
+                    "Vikings" is a riveting historical drama series that follows the legendary Norse heroes as they embark on epic journeys of conquest, exploration, and intrigue. Set against a backdrop of shifting alliances and cultural clashes, the series captures the essence of Viking legend with its gripping storytelling and stunning visuals.
+                </p>
+                <div class="flex my-4">
+                    <button class="flex items-center bg-white py-2 px-5 rounded-md">
+                        <ion-icon name="play" class="text-2xl"></ion-icon>
+                        <span class="ml-3 font-medium">
+                            Play
+                        </span>
+                    </button>
+                    <button class="ml-4 text-white flex items-center bg-gray-500 bg-opacity-80 py-2 px-5 rounded-md">
+                        <ion-icon name="information-circle-outline" class="text-2xl"></ion-icon>
+                        <span class="ml-3 font-medium">
+                            More Info
+                        </span>
+                    </button>
+                    <!-- Chat button with CSS properties -->
+                    <img src="{% static 'assets/Alif.jpeg' %}" alt="Chat Logo" id="chatBtn" style="position: fixed; bottom: 20px; right: 20px; width: 80px; height: 80px; cursor: grab; border-radius: 50%; transition: transform 0.3s ease-in-out; z-index: 9999;">
+                </div>
+            </div>
+            <!-- Chatbox with CSS properties -->
+            <iframe id="chatFrame" width="200" height="200" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/4ee135d4-ead3-480c-80a4-a33d6fab99ed" style="position: fixed; bottom: 80px; right: 20px; width: 400px; height: 500px; border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); display: none; z-index: 9999;"></iframe>
+            <script>
+                // Show/hide chat frame when logo/button is clicked
+                document.getElementById('chatBtn').addEventListener('click', function() {
+                    var chatFrame = document.getElementById('chatFrame');
+                    if (chatFrame.style.display === 'none') {
+                        chatFrame.style.display = 'block';
+                    } else {
+                        chatFrame.style.display = 'none';
+                    }
+                });
+            </script>
+        </section> 
+        <section class='bg-primary_black  min-h-screen flex justify-center py-10'>
+            <div class="p-8 w-10/12 relative" >
+                <h2 class="text-gray-200 text-2xl font-medium">
+                    Popular on Netflix
+                </h2>
+                <div class="flex justify-center  items-center min-w-full  movie_lis" style="z-index: 1;">
+                    {% for movie in movies %}
+                    <a href="{% url 'netflixapp:movie-detail' movie_id=movie.uuid %}">
+                        <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                            <img src="{{movie.image.url}}" class="w-full h-full " alt="">
+                        </div>
+                    </a>
+                    <a href="{% url 'netflixapp:movie-detail' movie_id=movie.uuid %}">
+                        <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                            <img src="{{movie.image.url}}" class="w-full h-full " alt="">
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

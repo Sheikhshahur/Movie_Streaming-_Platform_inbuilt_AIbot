@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alif - Chatbot</title>
+  <style>
+    /* Style for the chat button */
+    #chatBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      border-radius: 50%;
+      /* background-color: #007bff; */
+      /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+      transition: transform 0.3s ease-in-out;
+    }
+    #chatBtn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Style for the chat iframe */
+    #chatFrame {
+      position: fixed;
+      bottom: 80px; /* Adjust as needed */
+      right: 20px;
+      width: 450px;
+      height: 500px;
+      border: none;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo or Button -->
+  <img src="Alif.jpeg" alt="Chat Logo" id="chatBtn">
+
+  <!-- Dialogflow Chatbot iframe -->
+  <iframe id="chatFrame" width="400" height="500" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/4ee135d4-ead3-480c-80a4-a33d6fab99ed"></iframe>
+  <script>
+    // Show/hide chat frame when logo/button is clicked
+    document.getElementById('chatBtn').addEventListener('click', function() {
+      var chatFrame = document.getElementById('chatFrame');
+      if (chatFrame.style.display === 'none') {
+        chatFrame.style.display = 'block';
+      } else {
+        chatFrame.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
